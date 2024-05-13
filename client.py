@@ -6,7 +6,7 @@ from tkinter import scrolledtext
 from tkinter import messagebox
 
 HOST = '127.0.0.1'
-PORT = 1234
+PORT = 12345
 
 Mistyrose2 = '#EED5D2'
 Cornsilk1 = '#FFF8DC'
