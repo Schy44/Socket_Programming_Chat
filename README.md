@@ -10,7 +10,11 @@ ID No : 221-134-006
 ID No : 221-134-011
 # HOW TO RUN THE PROJECT
 1'st step : Go to project directory
+
+
 2'nd step : Run server.py in your terminal/cmd ( the command to execute this file is : python server.py ).
 	    By running server.py a server GUI will pop out into your window.
+
+     
 3'rd step : Run client.py in your terminal/cmd ( the command to execute this file is : python client.py ).
 	    By running client.py a client GUI will pop out into your window.
