@@ -101,7 +101,12 @@ def update_clients_list():
     clients_listbox.delete(0, tk.END)
     for username, client in active_clients:
         clients_listbox.insert(tk.END, username)
-
+        
+# Function to delete text from the message box
+def delete_text():
+    message_box.config(state=tk.NORMAL)
+    message_box.delete(1.0, tk.END)
+    message_box.config(state=tk.DISABLED)
 # GUI Setup
 root = tk.Tk()
 root.title("Chat Server")
@@ -128,5 +133,8 @@ clients_listbox.pack(fill=tk.BOTH, expand=True, pady=10, padx=10)
 message_box = scrolledtext.ScrolledText(right_frame, state=tk.DISABLED, height=20)
 message_box.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 
+# Delete Text Button
+delete_button = tk.Button(right_frame, text="Delete Text", command=delete_text)
+delete_button.pack(pady=10)
 # Start the GUI
 root.mainloop()
