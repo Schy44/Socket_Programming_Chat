@@ -14,10 +14,15 @@ def listen_for_messages(client, username):
         try:
             message = client.recv(2048).decode('utf-8')
             if message != '':
-                final_msg = username + '~' + message
-                send_messages_to_all(final_msg)
-                add_message(final_msg)
+                 if message.startswith('@'):
+                    recipient, content = message.split(' ', 1)
+                    recipient = recipient[1:]
+                    send_message_to_specific_client(recipient, f"{username}~{content}")
             else:
+                    final_msg = username + '~' + message
+                    send_messages_to_all(final_msg)
+                add_message(f"{username}~{message}")
+              else:
                 print(f"The message sent from client {username} is empty")
         except Exception as e:
             print(f"Error: {e}")
@@ -26,8 +31,14 @@ def listen_for_messages(client, username):
             
 # Function to send message to a single client
 def send_message_to_client(client, message):
-    client.sendall(message.encode())        
+    client.sendall(message.encode()) 
 
+# Function to send a message to a specific client
+def send_message_to_specific_client(recipient_username, message):
+    for username, client in active_clients:
+        if username == recipient_username:
+            send_message_to_client(client, message)
+            break
 # Function to send a message to all the clients that are currently connected to the server
 def send_messages_to_all(message):
     for user in active_clients:
